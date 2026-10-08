@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp(name = "Farhan Android Code")
@@ -18,6 +21,12 @@ public class krakens_robot extends LinearOpMode {
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
+        //Servo frontRight = hardwareMap.servo.get();
+        //Servo frontLeft = hardwareMap.servo.get();
+        Servo spindexer = hardwareMap.servo.get();
+        DcMotor intakeMotor = hardwareMap.dcMotor.get();
+        DcMotor flyWheel = hardwareMap.dcMotor.get();
+
 
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
@@ -72,6 +81,19 @@ public class krakens_robot extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+
+            //Outtake
+            if(gamepad1.a){
+                //Check if this sets it to forward or back. Needs to be backwards.
+                flyWheel.setPower(1);
+                while(gamepad1.a) {
+                    spindexer.setPosition(0.5);
+                }
+            }
+            //Intake
+            if(gamepad1.b){
+                intakeMotor.setPower(-1);
+            }
         }
     }
 }
