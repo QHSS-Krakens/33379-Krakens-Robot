@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -21,11 +22,10 @@ public class krakens_robot extends LinearOpMode {
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
-        //Servo frontRight = hardwareMap.servo.get();
-        //Servo frontLeft = hardwareMap.servo.get();
-        Servo spindexer = hardwareMap.servo.get();
-        DcMotor intakeMotor = hardwareMap.dcMotor.get();
-        DcMotor flyWheel = hardwareMap.dcMotor.get();
+        DcMotor intakeMotor = hardwareMap.dcMotor.get("intake");
+        DcMotor flyWheel = hardwareMap.dcMotor.get("Shooter");
+
+        //Servo
 
 
         // Reverse the right side motors. This may be wrong for your setup.
@@ -34,6 +34,9 @@ public class krakens_robot extends LinearOpMode {
         // See the note about this earlier on this page.
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        //frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        //backLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         // Retrieve the IMU from the hardware map
         IMU imu = hardwareMap.get(IMU.class, "imu");
@@ -81,19 +84,10 @@ public class krakens_robot extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+           
 
-            //Outtake
-            if(gamepad1.a){
-                //Check if this sets it to forward or back. Needs to be backwards.
-                flyWheel.setPower(1);
-                while(gamepad1.a) {
-                    spindexer.setPosition(0.5);
-                }
-            }
-            //Intake
-            if(gamepad1.b){
-                intakeMotor.setPower(-1);
-            }
+
+
         }
     }
 }
