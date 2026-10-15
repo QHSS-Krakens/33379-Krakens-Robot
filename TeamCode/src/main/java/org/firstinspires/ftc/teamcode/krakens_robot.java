@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name = "Farhan Android Code")
+@TeleOp(name = "Krakens Android Code")
 public class krakens_robot extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,8 +26,9 @@ public class krakens_robot extends LinearOpMode {
         DcMotor flyWheel = hardwareMap.dcMotor.get("Shooter");
 
         //Servo
-
-
+        CRServo spindexer = hardwareMap.get(CRServo.class, "spindexer");
+        CRServo frontRightServo = hardwareMap.get(CRServo.class, "frontRightServo");
+        CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
@@ -85,8 +86,28 @@ public class krakens_robot extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
            
+            // Intake
+            if(gamepad1.a){
+                // spindexer.setPower(-1);
+                frontRightServo.setPower(-1);
+                frontLeftServo.setPower(1);
+                intakeMotor.setPower(1);
+            }
+            else {
+                frontRightServo.setPower(0);
+                frontLeftServo.setPower(0);
+                intakeMotor.setPower(0);
+            }
 
-
+            //outtake
+            if(gamepad1.b){
+                spindexer.setPower(-1);
+                flyWheel.setPower(0.8);
+            }
+            else {
+                spindexer.setPower(0);
+                flyWheel.setPower(0);
+            }
 
         }
     }
