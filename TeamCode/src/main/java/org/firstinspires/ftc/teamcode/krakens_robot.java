@@ -85,6 +85,7 @@ public class krakens_robot extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+
            
             // Intake
             if(gamepad1.a){
