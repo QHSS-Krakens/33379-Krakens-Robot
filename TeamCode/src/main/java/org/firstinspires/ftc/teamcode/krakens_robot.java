@@ -86,7 +86,10 @@ public class krakens_robot extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-           
+            krakens_robot_functions krf = new krakens_robot_functions();
+
+            
+           /*
             // Intake
             if(gamepad1.a){
                 // spindexer.setPower(-1);
@@ -109,6 +112,8 @@ public class krakens_robot extends LinearOpMode {
                 spindexer.setPower(0);
                 flyWheel.setPower(0);
             }
+
+            */
 
         }
     }
