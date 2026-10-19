@@ -72,13 +72,9 @@ public class krakens_robot_functions extends krakens_robot{
         }
 
          */
-        
+
         intake();
         outtake();
-
-
-
-
 
         }
     }

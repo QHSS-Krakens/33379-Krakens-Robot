@@ -24,6 +24,7 @@ public class krakens_robot extends LinearOpMode {
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
+        /*
         DcMotor intakeMotor = hardwareMap.dcMotor.get("intake");
         DcMotor flyWheel = hardwareMap.dcMotor.get("Shooter");
 
@@ -31,6 +32,8 @@ public class krakens_robot extends LinearOpMode {
         CRServo spindexer = hardwareMap.get(CRServo.class, "spindexer");
         CRServo frontRightServo = hardwareMap.get(CRServo.class, "frontRightServo");
         CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
+        
+         */
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
