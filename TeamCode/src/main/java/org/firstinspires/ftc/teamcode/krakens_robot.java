@@ -14,8 +14,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp(name = "Krakens Android Code")
 public class krakens_robot extends LinearOpMode {
+    krakens_robot_functions krf = new krakens_robot_functions();
     @Override
     public void runOpMode() throws InterruptedException {
+        krakens_robot_functions krf = new krakens_robot_functions();
         // Declare our motors
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
@@ -47,6 +49,7 @@ public class krakens_robot extends LinearOpMode {
                 RevHubOrientationOnRobot.UsbFacingDirection.UP));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
+
 
         waitForStart();
 
@@ -86,7 +89,7 @@ public class krakens_robot extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            krakens_robot_functions krf = new krakens_robot_functions();
+            krf.runOpMode();
 
 
            /*
