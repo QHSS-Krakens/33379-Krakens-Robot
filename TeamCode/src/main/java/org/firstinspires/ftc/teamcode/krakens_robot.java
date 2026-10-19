@@ -88,7 +88,7 @@ public class krakens_robot extends LinearOpMode {
 
             krakens_robot_functions krf = new krakens_robot_functions();
 
-            
+
            /*
             // Intake
             if(gamepad1.a){
