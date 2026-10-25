@@ -14,14 +14,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp(name = "Krakens Android Code")
 public class krakens_robot extends LinearOpMode {
+    krakens_robot_functions krf = new krakens_robot_functions();
     @Override
     public void runOpMode() throws InterruptedException {
+        krakens_robot_functions krf = new krakens_robot_functions();
         // Declare our motors
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
+
         DcMotor intakeMotor = hardwareMap.dcMotor.get("intake");
         DcMotor flyWheel = hardwareMap.dcMotor.get("Shooter");
 
@@ -29,6 +32,8 @@ public class krakens_robot extends LinearOpMode {
         CRServo spindexer = hardwareMap.get(CRServo.class, "spindexer");
         CRServo frontRightServo = hardwareMap.get(CRServo.class, "frontRightServo");
         CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
+        
+
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
@@ -44,10 +49,11 @@ public class krakens_robot extends LinearOpMode {
         IMU imu = hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                RevHubOrientationOnRobot.UsbFacingDirection.UP));
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
+
 
         waitForStart();
 
@@ -89,7 +95,11 @@ public class krakens_robot extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             backRightMotor.setPower(backRightPower);
 
+
             //krakens_robot_functions krf = new krakens_robot_functions();
+
+
+            //krf.runOpMode();
 
 
 

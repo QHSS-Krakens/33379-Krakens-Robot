@@ -9,10 +9,14 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name = "secondCode")
+
+
+@TeleOp(name = "ThirdCode")
 public class gm0code extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
+        //krakens_robot_functions krf = new krakens_robot_functions();
+
         // Declare our motors
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
@@ -26,7 +30,9 @@ public class gm0code extends LinearOpMode {
         CRServo frontRightServo = hardwareMap.get(CRServo.class, "frontRightServo");
         CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
 
+
          */
+
 
 
 
@@ -90,6 +96,12 @@ public class gm0code extends LinearOpMode {
             backRightMotor.setPower(backRightPower);
             /*
 
+
+
+            //krf.runOpMode();
+
+            /*
+
             if(gamepad1.right_trigger > 0.5){
                 intakeMotor.setPower(1);
                 frontLeftServo.setPower(1);
@@ -116,7 +128,6 @@ public class gm0code extends LinearOpMode {
             }
 
              */
-
 
 
 
