@@ -36,6 +36,7 @@ public class krakens_robot extends LinearOpMode {
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
+
         //frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         //backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -51,6 +52,8 @@ public class krakens_robot extends LinearOpMode {
         waitForStart();
 
         if (isStopRequested()) return;
+
+
 
         while (opModeIsActive()) {
             double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
@@ -82,14 +85,14 @@ public class krakens_robot extends LinearOpMode {
             double backRightPower = (rotY + rotX - rx) / denominator;
 
             frontLeftMotor.setPower(frontLeftPower);
-            backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
+            backLeftMotor.setPower(backLeftPower);
             backRightMotor.setPower(backRightPower);
 
-            krakens_robot_functions krf = new krakens_robot_functions();
+            //krakens_robot_functions krf = new krakens_robot_functions();
 
 
-           /*
+
             // Intake
             if(gamepad1.a){
                 // spindexer.setPower(-1);
@@ -106,15 +109,32 @@ public class krakens_robot extends LinearOpMode {
             //outtake
             if(gamepad1.b){
                 spindexer.setPower(-1);
-                flyWheel.setPower(0.8);
+                flyWheel.setPower(0.9);
             }
             else {
                 spindexer.setPower(0);
                 flyWheel.setPower(0);
             }
+            //outtake
+            if(gamepad1.x){
+                // spindexer.setPower(-1);
+                frontRightServo.setPower(1);
+                frontLeftServo.setPower(-1);
+                intakeMotor.setPower(-1);
+            }
+            else {
+                frontRightServo.setPower(0);
+                frontLeftServo.setPower(0);
+                intakeMotor.setPower(0);
+            }
 
-            */
+
 
         }
+
+        frontLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        backLeftMotor.setPower(0);
+        backRightMotor.setPower(0);
     }
 }
