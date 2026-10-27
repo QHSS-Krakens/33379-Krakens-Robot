@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Functions;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 
 
@@ -23,7 +23,7 @@ public class gm0code extends LinearOpMode {
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("backRight");
-        /*
+
         DcMotor intakeMotor = hardwareMap.dcMotor.get("intake");
         DcMotor flyWheel = hardwareMap.dcMotor.get("Shooter");
         CRServo spindexer = hardwareMap.get(CRServo.class, "spindexer");
@@ -31,7 +31,7 @@ public class gm0code extends LinearOpMode {
         CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
 
 
-         */
+
 
 
 
@@ -94,40 +94,48 @@ public class gm0code extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
-            /*
 
 
-
-            //krf.runOpMode();
 
             /*
-
-            if(gamepad1.right_trigger > 0.5){
-                intakeMotor.setPower(1);
-                frontLeftServo.setPower(1);
-                frontRightServo.setPower(-1);
-            }
-            else if (gamepad1.right_bumper) {
-                intakeMotor.setPower(-1);
-                frontLeftServo.setPower(-1);
-                frontRightServo.setPower(1);
-            } else {
-                intakeMotor.setPower(0.0);
-                frontLeftServo.setPower(0.0);
-                frontRightServo.setPower(0.0);
-            }
-
-            //outtake
-            if(gamepad1.b){
-                flyWheel.setPower(0.7);
-                spindexer.setPower(-1);
-            }
-            else {
-                flyWheel.setPower(0);
-                spindexer.setPower(0);
-            }
+            krf.intake();
+            krf.launch();
+            krf.outtake();
 
              */
+            if (gamepad1.right_trigger > 0.5) {
+                // spindexer.setPower(-1);
+                frontRightServo.setPower(-1);
+                frontLeftServo.setPower(1);
+                intakeMotor.setPower(1);
+            }
+            else {
+                frontRightServo.setPower(0);
+                frontLeftServo.setPower(0);
+                intakeMotor.setPower(0);
+            }
+
+            if (gamepad1.right_bumper) {
+
+                // spindexer.setPower(-1);
+                frontRightServo.setPower(1);
+                frontLeftServo.setPower(-1);
+                intakeMotor.setPower(-1);
+            }
+            else {
+                frontRightServo.setPower(0);
+                frontLeftServo.setPower(0);
+                intakeMotor.setPower(0);
+            }
+
+            if (gamepad1.left_trigger > 0.5) {
+                spindexer.setPower(-1);
+                flyWheel.setPower(0.8);
+            } else {
+                spindexer.setPower(0);
+                flyWheel.setPower(0);
+            }
+
 
 
 
