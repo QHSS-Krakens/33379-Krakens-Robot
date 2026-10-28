@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
@@ -20,6 +21,7 @@ public class krakens_robot extends LinearOpMode {
         //krakens_robot_functions krf = new krakens_robot_functions();
         // Declare our motors
         // Make sure your ID's match your configuration
+        ElapsedTime elapse = new ElapsedTime();
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
@@ -103,6 +105,8 @@ public class krakens_robot extends LinearOpMode {
 
 
 
+
+
             // Intake
             if(gamepad1.a){
                 // spindexer.setPower(-1);
@@ -116,10 +120,15 @@ public class krakens_robot extends LinearOpMode {
                 intakeMotor.setPower(0);
             }
 
-            //outtake
+            //launch
             if(gamepad1.b){
-                spindexer.setPower(-1);
                 flyWheel.setPower(0.9);
+                elapse.reset();
+                double seconds = elapse.seconds();
+                if(seconds > 0.5){
+                    spindexer.setPower(-1);
+                }
+                    
             }
             else {
                 spindexer.setPower(0);
