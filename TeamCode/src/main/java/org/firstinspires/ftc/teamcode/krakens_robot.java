@@ -128,7 +128,7 @@ public class krakens_robot extends LinearOpMode {
                 if(seconds > 0.5){
                     spindexer.setPower(-1);
                 }
-                    
+
             }
             else {
                 spindexer.setPower(0);

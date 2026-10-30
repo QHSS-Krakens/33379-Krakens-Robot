@@ -8,17 +8,25 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import java.util.concurrent.TimeUnit;
 
 
 
 @TeleOp(name = "ThirdCode")
 public class gm0code extends LinearOpMode {
+
     @Override
     public void runOpMode() throws InterruptedException {
-        //krakens_robot_functions krf = new krakens_robot_functions();
+        krakens_io krf = new krakens_io();
 
         // Declare our motors
         // Make sure your ID's match your configuration
+
+        ElapsedTime elapse = new ElapsedTime();
+
+        double secondsTime;
+        boolean timerOn = false;
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeft");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeft");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRight");
@@ -29,13 +37,6 @@ public class gm0code extends LinearOpMode {
         CRServo spindexer = hardwareMap.get(CRServo.class, "spindexer");
         CRServo frontRightServo = hardwareMap.get(CRServo.class, "frontRightServo");
         CRServo frontLeftServo = hardwareMap.get(CRServo.class, "frontLeftServo");
-
-
-
-
-
-
-
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
@@ -69,7 +70,7 @@ public class gm0code extends LinearOpMode {
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
             // The equivalent button is start on Xbox-style controllers.
-            if (gamepad1.options) {
+            if (gamepad1.x) {
                 imu.resetYaw();
             }
 
@@ -97,12 +98,10 @@ public class gm0code extends LinearOpMode {
 
 
 
-            /*
-            krf.intake();
-            krf.launch();
-            krf.outtake();
+            //krf.loop();
 
-             */
+
+            //intake
             if (gamepad1.right_trigger > 0.5) {
                 // spindexer.setPower(-1);
                 frontRightServo.setPower(-1);
@@ -114,9 +113,8 @@ public class gm0code extends LinearOpMode {
                 frontLeftServo.setPower(0);
                 intakeMotor.setPower(0);
             }
-
+            //outtake
             if (gamepad1.right_bumper) {
-
                 // spindexer.setPower(-1);
                 frontRightServo.setPower(1);
                 frontLeftServo.setPower(-1);
@@ -128,17 +126,36 @@ public class gm0code extends LinearOpMode {
                 intakeMotor.setPower(0);
             }
 
+            /*
             if (gamepad1.left_trigger > 0.5) {
-                spindexer.setPower(-1);
-                flyWheel.setPower(0.8);
-            } else {
-                spindexer.setPower(0);
-                flyWheel.setPower(0);
+                flyWheel.setPower(0.9);
+                elapse.reset();
+                elapse.startTime();
+                double seconds = elapse.seconds();
+                if(seconds > 0.5){
+                    spindexer.setPower(-1);
+                }
+
             }
 
-
-
-
+             */
+            //launch
+            secondsTime = elapse.seconds();
+            if (gamepad1.left_trigger > 0.5) {
+                if(!timerOn){
+                    elapse.reset();
+                    timerOn = true;
+                }
+                flyWheel.setPower(0.7);
+                if (secondsTime > 1.5) {
+                    spindexer.setPower(-1);
+                }
+            }
+            else{
+                timerOn = false;
+                flyWheel.setPower(0);
+                spindexer.setPower(0);
+            }
         }
     }
 }
