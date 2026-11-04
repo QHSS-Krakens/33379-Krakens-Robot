@@ -18,6 +18,14 @@ public class gm0code extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        //Coordinates
+        /*
+        int Xhiveposition
+        int YHiveposition
+        int ZHiveposition
+        
+         */
+
         krakens_io krf = new krakens_io();
 
         // Declare our motors
@@ -44,10 +52,14 @@ public class gm0code extends LinearOpMode {
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        //breaking
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        //Encoder init
+
 
         // Retrieve the IMU from the hardware map
         IMU imu = hardwareMap.get(IMU.class, "imu");
