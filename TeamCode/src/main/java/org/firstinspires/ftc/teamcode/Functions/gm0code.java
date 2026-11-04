@@ -158,7 +158,7 @@ public class gm0code extends LinearOpMode {
                     elapse.reset();
                     timerOn = true;
                 }
-                flyWheel.setPower(0.7);
+                flyWheel.setPower(0.45);
                 if (secondsTime > 1.5) {
                     spindexer.setPower(-1);
                 }
